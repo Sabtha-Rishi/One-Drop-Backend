@@ -9,9 +9,8 @@ const cors = require("cors");
 dotenv.config();
 
 // ROUTER IMPORTS
-const HomeRouter = require("./router/home.router");
+
 const AccountsRouter = require("./router/accounts.router");
-const ProductsRouter = require("./router/products.router");
 
 // EXPRES APP
 const app = express();
@@ -40,7 +39,6 @@ mongoose
   .catch((err) => console.log(err));
 
 // ROUTES
-app.use("/", HomeRouter);
 app.use("/accounts", AccountsRouter);
 
 // EXPORTS
