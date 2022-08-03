@@ -48,7 +48,7 @@ const createUser = async (req, res) => {
       });
     } else {
       User.save(newUser);
-      return res.json({isSuccess:true});
+      return res.json({ isSuccess: true });
     }
   });
 };
@@ -70,12 +70,10 @@ const loginUser = (req, res) => {
           JWT_SECRET
         );
 
-        res.cookie(
-          "token",
-          token,
-          { expire: new Date() + 9999 },
-          { sameSite: "None", secure: true }
-        );
+        res.cookie("token", token, {
+          maxAge: 24 * 60 * 60 * 1000,
+          httpOnly: true,
+        });
         return res.status(201).send({
           isAuthenticated: true,
         });
@@ -98,41 +96,36 @@ const logoutUser = (req, res) => {
 const getUser = (req, res) => {
   const userID = jwt.verify(req.cookies.token, JWT_SECRET).id;
 
-
   AccountsModel.findOne({ _id: userID }, (err, user) => {
     if (err) {
       return res.status(401).json({ err: err.message, isAuthenticated: false });
     }
 
     if (!user) {
-      return res.status(401).json({ err: 'No user found', isAuthenticated: false });
+      return res
+        .status(401)
+        .json({ err: "No user found", isAuthenticated: false });
     }
-    return res.status(201).json({user:user, isAuthenticated:true});
+    return res.status(201).json({ user: user, isAuthenticated: true });
   });
 };
 
 // Update User
 
-const updateUser = (req,res)=>{
-
+const updateUser = (req, res) => {
   const userID = jwt.verify(req.cookies.token, JWT_SECRET).id;
 
-  AccountsModel.findByIdAndUpdate(userID, req.body, (err,user)=>{
+  AccountsModel.findByIdAndUpdate(userID, req.body, (err, user) => {
     if (err) {
       return res.status(401).json({ err: err.message, isUpdated: false });
     }
 
     if (!user) {
-      return res
-        .status(401)
-        .json({ err: "No user found", isUpdated: false });
+      return res.status(401).json({ err: "No user found", isUpdated: false });
     }
     return res.status(201).json({ user: user, isUpdated: true });
-
-  })
-
-}
-
+  });
+};
 
 //Change Password
 const changePassword = (req, res) => {
