@@ -11,6 +11,8 @@ dotenv.config();
 // ROUTER IMPORTS
 
 const AccountsRouter = require("./router/accounts.router");
+const RequestsRouter = require("./router/requests.router");
+
 
 // EXPRES APP
 const app = express();
@@ -40,6 +42,8 @@ mongoose
 
 // ROUTES
 app.use("/accounts", AccountsRouter);
+app.use("/requests", RequestsRouter);
+
 
 // EXPORTS
 module.exports = app;
