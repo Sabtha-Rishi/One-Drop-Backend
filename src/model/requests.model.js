@@ -3,7 +3,11 @@ const mongoose = require("mongoose");
 
 // MODEL SCHEMA
 const RequestSchema = new mongoose.Schema({
-  bloodgrp: {
+  userId: {
+    type: String,
+    required: true,
+  },
+  bloodGrp: {
     type: String,
     required: true,
   },
@@ -41,7 +45,7 @@ const RequestSchema = new mongoose.Schema({
   isActive: {
     type: Boolean,
     required: true,
-    default: false,
+    default: true,
   },
   isAnyBlood: {
     type: Boolean,
@@ -69,10 +73,15 @@ const RequestSchema = new mongoose.Schema({
     type: String,
     default: "",
   },
-  isActive: {
-    type: Boolean,
-    required: true,
-    default: false,
+  city: {
+    type: String,
+    default: "",
+  },
+
+  created_at: {
+    type: Date,
+    require: true,
+    default: Date.now(),
   },
   donors: [
     {
@@ -82,12 +91,10 @@ const RequestSchema = new mongoose.Schema({
   ],
 });
 
-
 // ______________________________________ SCHEMA END  ____________________________
 //  _____________________________________ MODEL METHODS START _____________________
 
-RequestsSchema.methods = {
-};
+RequestSchema.methods = {};
 
 //  _____________________________________ MODEL METHODS END ______________________
 //  _________________________________________ EXPORTS _____________________________
