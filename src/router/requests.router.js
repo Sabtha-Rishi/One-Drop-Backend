@@ -9,8 +9,8 @@ const RequestRouter = express.Router();
 RequestRouter.get("/", RequestsController.allRequests);
 
 RequestRouter.post("/new", RequestsController.create);
+RequestRouter.get("/:reqId", RequestsController.getRequest);
 // RequestRouter.delete('/:reqID/delete', Validator.isLoggedin,RequestsController.deleteRequest)
-// RequestRouter.get("/:reqID", RequestsController.getRequest);
 
 //Exports
 module.exports = RequestRouter;

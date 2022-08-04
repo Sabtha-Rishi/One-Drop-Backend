@@ -44,8 +44,28 @@ const create = (req, res) => {
   });
 };
 
+// Single request
+
+const getRequest = (req, res) => {
+  reqId = req.params.reqId;
+
+  RequestModel.findById(reqId, (err, result) => {
+    if (err) {
+      return res.json({
+        isSuccess: false,
+        err: err.message,
+      });
+    }
+    return res.status(201).json({
+      isSuccess: true,
+      request: result,
+    });
+  });
+};
+
 const RequestController = {
   allRequests,
   create,
+  getRequest,
 };
 module.exports = RequestController;
