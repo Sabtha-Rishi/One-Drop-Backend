@@ -89,10 +89,15 @@ const loginUser = (req, res) => {
 // User Logout
 const logoutUser = (req, res) => {
   res.clearCookie("token");
-  res.send("Logged out");
+  return res.json({
+    isSuccess: true,
+  });
 };
 
 //getUser
+
+
+
 const getUser = (req, res) => {
   const userID = jwt.verify(req.cookies.token, JWT_SECRET).id;
 
