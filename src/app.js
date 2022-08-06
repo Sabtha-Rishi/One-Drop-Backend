@@ -32,10 +32,13 @@ app.set("view engine", "ejs");
 
 // Connect to MongoDB
 mongoose
-  .connect(process.env.DB_CONNECTION, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(
+    "mongodb+srv://admin:Rishi1234.@data.qcgzl.mongodb.net/DATA?retryWrites=true&w=majority",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  )
   .then((result) => console.log("Connected to DB"))
   .catch((err) => console.log(err));
 
