@@ -96,8 +96,6 @@ const logoutUser = (req, res) => {
 
 //getUser
 
-
-
 const getUser = (req, res) => {
   const userID = jwt.verify(req.cookies.token, JWT_SECRET).id;
 
@@ -177,6 +175,23 @@ const deleteUser = (req, res) => {
   });
 };
 
+// Single User
+
+const getSingleUser = (req, res) => {
+  AccountsModel.findById(req.params.userId, (err, user) => {
+    if (err) {
+      return res.json({
+        isSuccess: false,
+        errr: err.message,
+      });
+    }
+    return res.json({
+      isSuccess: true,
+      user: user,
+    });
+  });
+};
+
 const AccountsController = {
   createUser,
   upload,
@@ -186,6 +201,7 @@ const AccountsController = {
   getUser,
   updateUser,
   changePassword,
+  getSingleUser,
 };
 
 module.exports = AccountsController;

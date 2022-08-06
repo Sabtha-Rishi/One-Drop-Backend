@@ -15,6 +15,7 @@ AccountsRouter.post(
   AccountsController.upload.single("file"),
   AccountsController.createUser
 );
+
 AccountsRouter.post("/login", AccountsController.loginUser);
 AccountsRouter.post("/logout", AccountsController.logoutUser);
 AccountsRouter.delete(
@@ -33,6 +34,7 @@ AccountsRouter.get(
   AccountsController.getUser
 );
 
+AccountsRouter.get("/:userId", AccountsController.getSingleUser);
 AccountsRouter.post(
   "/changepassword",
   ValidatorMiddleware.isLoggedin,
