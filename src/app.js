@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const csurf = require("csurf");
+const csrf = require("csurf");
 
 dotenv.config();
 
