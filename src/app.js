@@ -23,11 +23,11 @@ app.use(function (req, res, next) {
     "Origin, X-Requested-With, Content-Type, Accept, Authorization"
   );
   res.header("Access-Control-Allow-Credentials", true);
-  next();
   cors({
     origin: req.headers.origin,
     credentials: true,
   });
+  next();
 });
 
 // MIDDLEWARES
