@@ -31,6 +31,7 @@ app.use(function (req, res, next) {
   cors({
     origin: req.headers.origin,
     credentials: true,
+    exposedHeaders: ["set-cookie"],
   });
   next();
 });
