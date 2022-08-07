@@ -5,11 +5,8 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const csrf = require("csurf");
 
 dotenv.config();
-
-const csrfProtection = csrf({ cookie: true });
 
 // ROUTER IMPORTS
 
@@ -40,8 +37,6 @@ app.use(function (req, res, next) {
 });
 
 // MIDDLEWARES
-
-app.use(csrfProtection);
 
 app.use(express.json());
 app.use(cookieParser());
