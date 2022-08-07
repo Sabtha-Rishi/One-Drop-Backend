@@ -76,6 +76,7 @@ const loginUser = (req, res) => {
         });
         return res.status(201).send({
           isAuthenticated: true,
+          new: true,
         });
       } else {
         return res.status(400).send({
