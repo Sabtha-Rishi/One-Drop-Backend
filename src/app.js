@@ -16,19 +16,35 @@ const RequestsRouter = require("./router/requests.router");
 // EXPRES APP
 const app = express();
 
-app.use(
+// app.use((req, res, next) => {
+  
+//   next();
+// });
+
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", req.headers.origin);
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+  res.header("Access-Control-Allow-Credentials", true);
   cors({
-    origin: "http://localhost:3000",
+    origin: req.headers.origin,
     credentials: true,
-  })
-);
+  });
+  next();
+});
 
 // MIDDLEWARES
+
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set("view engine", "ejs");
+app.set("trust proxy", 1);
+
 
 // Connect to MongoDB
 mongoose
