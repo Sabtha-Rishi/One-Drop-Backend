@@ -5,8 +5,11 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const csurf = require("csurf");
 
 dotenv.config();
+
+const csrfProtection = csrf({ cookie: true });
 
 // ROUTER IMPORTS
 
@@ -17,7 +20,7 @@ const RequestsRouter = require("./router/requests.router");
 const app = express();
 
 // app.use((req, res, next) => {
-  
+
 //   next();
 // });
 
@@ -38,6 +41,7 @@ app.use(function (req, res, next) {
 
 // MIDDLEWARES
 
+app.use(csrfProtection);
 
 app.use(express.json());
 app.use(cookieParser());
@@ -45,7 +49,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set("view engine", "ejs");
 app.set("trust proxy", 1);
-
 
 // Connect to MongoDB
 mongoose

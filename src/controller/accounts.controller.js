@@ -74,11 +74,11 @@ const loginUser = (req, res) => {
           maxAge: 24 * 60 * 60 * 1000,
           httpOnly: true,
           sameSite: "none",
-          secure:true
+          secure: true,
         });
         return res.status(201).send({
           isAuthenticated: true,
-          mod2: true,
+          csrf: true,
         });
       } else {
         return res.status(400).send({
