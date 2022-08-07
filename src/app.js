@@ -16,19 +16,12 @@ const RequestsRouter = require("./router/requests.router");
 // EXPRES APP
 const app = express();
 
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", req.headers.origin);
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-  );
-  res.header("Access-Control-Allow-Credentials", true);
+app.use(
   cors({
-    origin: req.headers.origin,
+    origin: "http://localhost:3000",
     credentials: true,
-  });
-  next();
-});
+  })
+);
 
 // MIDDLEWARES
 app.use(express.json());
