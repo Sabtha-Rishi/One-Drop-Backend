@@ -4,8 +4,7 @@ const AccountsModel = require("../model/accounts.model");
 
 const jwt = require("jsonwebtoken");
 
-JWT_SECRET =
-  "sKSDwsbdkJH&@#&297298ydkjhsdfqw83yr2893y(*YWuerh238ry0(U&)(09q3r209fwkjhfehJH}{}WJe38rywehfj))";
+JWT_SECRET = process.env.JWT_SECRET;
 
 //Request Handlers
 

@@ -6,7 +6,7 @@ const fs = require("fs");
 multer = require("multer");
 const AccountsModel = require("../model/accounts.model");
 
-JWT_SECRET ="sKSDwsbdkJH&@#&297298ydkjhsdfqw83yr2893y(*YWuerh238ry0(U&)(09q3r209fwkjhfehJH}{}WJe38rywehfj))";
+JWT_SECRET = process.env.JWT_SECRET;
 
 // STORAGE
 var Storage = multer.diskStorage({
