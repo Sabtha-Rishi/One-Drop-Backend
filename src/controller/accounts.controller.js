@@ -73,10 +73,11 @@ const loginUser = (req, res) => {
         res.cookie("token", token, {
           maxAge: 24 * 60 * 60 * 1000,
           httpOnly: true,
+          sameSite: "none",
         });
         return res.status(201).send({
           isAuthenticated: true,
-          new: true,
+          mod: true,
         });
       } else {
         return res.status(400).send({
