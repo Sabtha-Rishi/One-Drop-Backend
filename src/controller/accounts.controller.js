@@ -78,7 +78,7 @@ const loginUser = (req, res) => {
         });
         return res.status(201).send({
           isAuthenticated: true,
-          csrf: true,
+          csrfok: true,
         });
       } else {
         return res.status(400).send({
